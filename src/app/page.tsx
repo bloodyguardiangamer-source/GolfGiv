@@ -6,6 +6,7 @@ import { CharityShowcase } from "@/components/landing/CharityShowcase";
 import { PrizePool } from "@/components/landing/PrizePool";
 import { DrawMechanics } from "@/components/landing/DrawMechanics";
 import { SocialMarquee } from "@/components/landing/SocialMarquee";
+import { Testimonials } from "@/components/landing/Testimonials";
 import { SubscriptionCTA } from "@/components/landing/SubscriptionCTA";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
@@ -26,6 +27,7 @@ export default function Home() {
           <CharityShowcase />
           <DrawMechanics />
           <SocialMarquee />
+          <Testimonials />
           <SubscriptionCTA />
           <Footer />
         </main>

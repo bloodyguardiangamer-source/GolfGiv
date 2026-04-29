@@ -89,42 +89,55 @@ export function CharityShowcase() {
         {charities.map((charity, i) => (
           <div
             key={i}
-            className="w-[300px] lg:w-[380px] flex-shrink-0 bg-surface border border-border rounded-2xl p-8 flex flex-col"
+            className="group relative w-[300px] lg:w-[380px] flex-shrink-0 bg-surface border border-border rounded-2xl p-8 flex flex-col overflow-hidden transition-colors duration-500 hover:border-primary/30"
+            onMouseMove={(e) => {
+              const rect = e.currentTarget.getBoundingClientRect();
+              e.currentTarget.style.setProperty('--x', `${e.clientX - rect.left}px`);
+              e.currentTarget.style.setProperty('--y', `${e.clientY - rect.top}px`);
+            }}
           >
-            <div className="flex justify-between items-start mb-8">
-              <div className="w-12 h-12 rounded-full border border-primary flex items-center justify-center text-primary font-bold text-xl">
-                {charity.initial}
+            <div 
+              className="pointer-events-none absolute -inset-px opacity-0 transition duration-500 group-hover:opacity-100"
+              style={{
+                background: `radial-gradient(400px circle at var(--x) var(--y), rgba(184, 245, 90, 0.08), transparent 40%)`,
+              }}
+            />
+            <div className="relative z-10 flex flex-col h-full">
+              <div className="flex justify-between items-start mb-8">
+                <div className="w-12 h-12 rounded-full border border-primary flex items-center justify-center text-primary font-bold text-xl">
+                  {charity.initial}
+                </div>
+                {charity.featured && (
+                  <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold tracking-wider">
+                    FEATURED
+                  </span>
+                )}
               </div>
-              {charity.featured && (
-                <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold tracking-wider">
-                  FEATURED
-                </span>
-              )}
-            </div>
-            <h3 className="text-xl font-bold mb-2">{charity.name}</h3>
-            <span className="text-[10px] font-bold text-muted uppercase tracking-wider mb-4 block">
-              {charity.category}
-            </span>
-            <p className="text-muted text-sm leading-relaxed mb-8 flex-grow">
-              {charity.description}
-            </p>
-            <div className="space-y-3">
-              <div className="flex justify-between text-[10px] font-bold text-muted">
-                <span>CONTRIBUTION</span>
-                <span className="text-primary">10% - 25%</span>
-              </div>
-              <div className="h-1 w-full bg-border rounded-full overflow-hidden">
-                <div className="h-full w-[40%] bg-primary" />
+              <h3 className="text-xl font-bold mb-2 group-hover:text-white transition-colors">{charity.name}</h3>
+              <span className="text-[10px] font-bold text-muted uppercase tracking-wider mb-4 block">
+                {charity.category}
+              </span>
+              <p className="text-muted text-sm leading-relaxed mb-8 flex-grow">
+                {charity.description}
+              </p>
+              <div className="space-y-3 mt-auto">
+                <div className="flex justify-between text-[10px] font-bold text-muted">
+                  <span>CONTRIBUTION</span>
+                  <span className="text-primary">10% - 25%</span>
+                </div>
+                <div className="h-1 w-full bg-border rounded-full overflow-hidden">
+                  <div className="h-full w-[40%] bg-primary" />
+                </div>
               </div>
             </div>
           </div>
         ))}
         
-        <div className="w-[300px] lg:w-[380px] flex-shrink-0 bg-primary/5 border border-dashed border-primary/30 rounded-2xl p-8 flex flex-col items-center justify-center text-center">
-          <div className="text-4xl font-serif font-bold mb-4">+ 7 more</div>
-          <p className="text-muted text-sm mb-8">charities. You choose.</p>
-          <button className="text-primary font-bold text-sm hover:underline">
-            Browse All Charities →
+        <div className="group w-[300px] lg:w-[380px] flex-shrink-0 bg-primary/5 border border-dashed border-primary/30 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-primary/10 transition-colors">
+          <div className="text-4xl font-serif font-bold mb-4 group-hover:scale-110 transition-transform duration-500">+ 7 more</div>
+          <p className="text-muted text-sm mb-8 group-hover:text-white transition-colors">charities. You choose.</p>
+          <button className="text-primary font-bold text-sm group-hover:underline flex items-center gap-2">
+            Browse All Charities <span className="group-hover:translate-x-1 transition-transform">→</span>
           </button>
         </div>
       </div>

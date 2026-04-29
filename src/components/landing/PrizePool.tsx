@@ -60,15 +60,31 @@ export function PrizePool() {
 
         <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { title: '5 MATCH — JACKPOT', share: '40% of pool', amount: '£19,200', desc: 'Rolls over if unclaimed', color: 'text-accent' },
-            { title: '4 MATCH', share: '35% of pool', amount: '£16,800', desc: 'Split among all 4-match winners', color: 'text-white' },
-            { title: '3 MATCH', share: '25% of pool', amount: '£12,000', desc: 'Split among all 3-match winners', color: 'text-muted' },
+            { title: '5 MATCH — JACKPOT', share: '40% of pool', amount: '£19,200', desc: 'Rolls over if unclaimed', color: 'text-accent', border: 'hover:border-accent/50' },
+            { title: '4 MATCH', share: '35% of pool', amount: '£16,800', desc: 'Split among all 4-match winners', color: 'text-white', border: 'hover:border-primary/50' },
+            { title: '3 MATCH', share: '25% of pool', amount: '£12,000', desc: 'Split among all 3-match winners', color: 'text-muted', border: 'hover:border-white/30' },
           ].map((tier, i) => (
-            <div key={i} className="prize-card bg-surface border border-border rounded-2xl p-8">
-              <div className="text-[10px] font-bold text-muted mb-2">{tier.title}</div>
-              <div className="text-xs text-muted mb-6">{tier.share} · {tier.desc}</div>
-              <div className={`text-4xl font-bold ${tier.color}`}>{tier.amount}</div>
-              <div className="text-[10px] text-muted mt-2">this month</div>
+            <div 
+              key={i} 
+              className={`prize-card group relative overflow-hidden bg-surface border border-border rounded-2xl p-8 transition-colors duration-500 ${tier.border}`}
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                e.currentTarget.style.setProperty('--x', `${e.clientX - rect.left}px`);
+                e.currentTarget.style.setProperty('--y', `${e.clientY - rect.top}px`);
+              }}
+            >
+              <div 
+                className="pointer-events-none absolute -inset-px opacity-0 transition duration-500 group-hover:opacity-100"
+                style={{
+                  background: `radial-gradient(400px circle at var(--x) var(--y), rgba(255,255,255,0.06), transparent 40%)`,
+                }}
+              />
+              <div className="relative z-10">
+                <div className="text-[10px] font-bold text-muted mb-2">{tier.title}</div>
+                <div className="text-xs text-muted mb-6">{tier.share} · {tier.desc}</div>
+                <div className={`text-4xl font-bold ${tier.color} transition-transform duration-300 group-hover:scale-105 group-hover:translate-x-2`}>{tier.amount}</div>
+                <div className="text-[10px] text-muted mt-2">this month</div>
+              </div>
             </div>
           ))}
         </div>

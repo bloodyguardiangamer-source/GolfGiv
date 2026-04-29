@@ -10,8 +10,22 @@ const steps = [
     title: 'Choose your plan. Join the community.',
     description: 'Pick monthly or yearly. A portion of every subscription goes straight to your chosen charity — minimum 10%, you decide how much. Secure payment via Stripe.',
     card: (
-      <div className="bg-surface border border-border rounded-2xl p-8 w-full max-w-[400px]">
-        <div className="flex gap-4 mb-8">
+      <div 
+        className="group relative bg-surface border border-border rounded-2xl p-8 w-full max-w-[400px] overflow-hidden transition-colors duration-500 hover:border-primary/30"
+        onMouseMove={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          e.currentTarget.style.setProperty('--x', `${e.clientX - rect.left}px`);
+          e.currentTarget.style.setProperty('--y', `${e.clientY - rect.top}px`);
+        }}
+      >
+        <div 
+          className="pointer-events-none absolute -inset-px opacity-0 transition duration-500 group-hover:opacity-100"
+          style={{
+            background: `radial-gradient(400px circle at var(--x) var(--y), rgba(184, 245, 90, 0.08), transparent 40%)`,
+          }}
+        />
+        <div className="relative z-10">
+          <div className="flex gap-4 mb-8">
           <div className="flex-1 p-4 rounded-xl border border-primary bg-primary/5 text-center">
             <div className="text-[10px] text-primary font-bold mb-1">MONTHLY</div>
             <div className="text-xl font-bold">£9.99</div>
@@ -30,6 +44,7 @@ const steps = [
             <div className="h-full w-[60%] bg-primary" />
           </div>
         </div>
+        </div>
       </div>
     )
   },
@@ -39,17 +54,32 @@ const steps = [
     title: 'Enter your 5 latest Stableford scores.',
     description: 'After every round, log your score. We keep your last 5. Those 5 numbers become your draw entries every month. The better you play — the more you might win.',
     card: (
-      <div className="bg-surface border border-border rounded-2xl p-8 w-full max-w-[400px]">
-        <div className="grid grid-cols-5 gap-2 mb-8">
+      <div 
+        className="group relative bg-surface border border-border rounded-2xl p-8 w-full max-w-[400px] overflow-hidden transition-colors duration-500 hover:border-primary/30"
+        onMouseMove={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          e.currentTarget.style.setProperty('--x', `${e.clientX - rect.left}px`);
+          e.currentTarget.style.setProperty('--y', `${e.clientY - rect.top}px`);
+        }}
+      >
+        <div 
+          className="pointer-events-none absolute -inset-px opacity-0 transition duration-500 group-hover:opacity-100"
+          style={{
+            background: `radial-gradient(400px circle at var(--x) var(--y), rgba(184, 245, 90, 0.08), transparent 40%)`,
+          }}
+        />
+        <div className="relative z-10">
+          <div className="grid grid-cols-5 gap-2 mb-8">
           {[38, 34, 31, 36, 29].map((s, i) => (
             <div key={i} className="aspect-square flex items-center justify-center rounded-lg border border-border bg-background text-sm font-bold">
               {s}
             </div>
           ))}
         </div>
-        <button className="w-full py-3 rounded-lg border border-dashed border-border text-muted text-xs hover:border-primary/50 hover:text-primary transition-colors">
+        <button className="w-full py-3 rounded-lg border border-dashed border-border text-muted text-xs hover:border-primary/50 hover:text-primary hover:bg-primary/5 transition-all">
           + Add New Score
         </button>
+        </div>
       </div>
     )
   },
@@ -59,8 +89,22 @@ const steps = [
     title: 'Monthly draws. Real prizes. Real impact.',
     description: 'Every month we draw 5 numbers. Match 3, 4, or all 5 and win a share of the prize pool. The jackpot rolls over if unclaimed. And your charity gets paid regardless.',
     card: (
-      <div className="bg-surface border border-border rounded-2xl p-8 w-full max-w-[400px]">
-        <div className="flex justify-between items-center mb-6">
+      <div 
+        className="group relative bg-surface border border-border rounded-2xl p-8 w-full max-w-[400px] overflow-hidden transition-colors duration-500 hover:border-primary/30"
+        onMouseMove={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          e.currentTarget.style.setProperty('--x', `${e.clientX - rect.left}px`);
+          e.currentTarget.style.setProperty('--y', `${e.clientY - rect.top}px`);
+        }}
+      >
+        <div 
+          className="pointer-events-none absolute -inset-px opacity-0 transition duration-500 group-hover:opacity-100"
+          style={{
+            background: `radial-gradient(400px circle at var(--x) var(--y), rgba(184, 245, 90, 0.08), transparent 40%)`,
+          }}
+        />
+        <div className="relative z-10">
+          <div className="flex justify-between items-center mb-6">
           <span className="text-[10px] font-bold text-muted">MAY DRAW RESULTS</span>
           <span className="text-[10px] font-bold text-accent">JACKPOT MATCH</span>
         </div>
@@ -77,6 +121,7 @@ const steps = [
         <div className="p-4 rounded-xl bg-primary/5 border border-primary/20 text-center">
           <div className="text-[10px] text-primary font-bold mb-1">YOUR WINNINGS</div>
           <div className="text-2xl font-bold">£420.00</div>
+        </div>
         </div>
       </div>
     )
