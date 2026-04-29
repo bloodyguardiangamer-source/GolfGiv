@@ -3,19 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NEXT_DISABLE_ESLINT=1 NEXT_DISABLE_TYPECHECK=1 next dev --turbopack",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "oxlint",
     "type-check": "tsc --noEmit",
-    "check-all": "npm run lint & npm run type-check & wait"
+    "check-all": "npm run lint & npm run type-check & wait",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui"
   },
   "dependencies": {
     "@barba/core": "^2.10.3",
+    "@hookform/resolvers": "^5.2.2",
+    "@react-email/components": "^1.0.12",
     "@studio-freight/react-lenis": "^0.0.47",
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.49.4",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "framer-motion": "^12.38.0",
     "gsap": "^3.15.0",
     "gsap-trial": "^3.13.0",
@@ -25,9 +30,15 @@
     "posthog-js": "^1.270.1",
     "react": "^19",
     "react-dom": "^19",
-    "tailwind-merge": "^3.5.0"
+    "react-hook-form": "^7.74.0",
+    "resend": "^6.12.2",
+    "stripe": "^22.1.0",
+    "tailwind-merge": "^3.5.0",
+    "zod": "^4.3.6",
+    "zustand": "^5.0.12"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
